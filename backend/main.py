@@ -43,7 +43,7 @@ notes = sqlalchemy.Table(
     "notes",
     metadata,
     sqlalchemy.Column("id", sqlalchemy.Integer, primary_key=True),
-    sqlalchemy.Column("name", sqlalchemy.String),
+    sqlalchemy.Column("title", sqlalchemy.String, server_default="blank"),
     sqlalchemy.Column("text", sqlalchemy.String),
     sqlalchemy.Column("completed", sqlalchemy.Boolean),
 )
@@ -54,14 +54,14 @@ engine = sqlalchemy.create_engine(
 metadata.create_all(engine)
 
 class NoteIn(BaseModel):
-    name: str
+    title: str
     text: str
     completed: bool
 
 
 class Note(BaseModel):
     id: int
-    name: str
+    title: str
     text: str
     completed: bool
 
@@ -87,6 +87,6 @@ async def read_notes():
 
 @app.post("/notes/", response_model=Note)
 async def create_note(note: NoteIn):
-    query = notes.insert().values(text=note.text, completed=note.completed)
+    query = notes.insert().values(text=note.text, title=note.title, completed=note.completed)
     last_record_id = await database.execute(query)
     return {**note.dict(), "id": last_record_id}
