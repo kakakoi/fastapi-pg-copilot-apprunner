@@ -10,7 +10,7 @@ from pydantic import BaseModel
 import os
 import json
 import logging
- 
+
 logging.basicConfig()
 logging.getLogger('sqlalchemy.engine').setLevel(logging.INFO)
 
@@ -30,12 +30,12 @@ DB_NAME = secret_text['dbname']
 TEST_DATABASE_URL = "sqlite:///./test.db"
 DATABASE_URL = '{}://{}:{}@{}:{}/{}'.format(DATABASE, USER, PASSWORD, HOST, PORT, DB_NAME)
 
-TESTING = False
+TESTING = os.environ.get('TESTING')
 
 if TESTING:
-    database = databases.Database(TEST_DATABASE_URL, force_rollback=True)
-else:
-    database = databases.Database(DATABASE_URL)
+    DATABASE_URL = TEST_DATABASE_URL
+
+database = databases.Database(DATABASE_URL)
 
 metadata = sqlalchemy.MetaData()
 
@@ -51,6 +51,8 @@ notes = sqlalchemy.Table(
 engine = sqlalchemy.create_engine(
     DATABASE_URL
 )
+if TESTING:
+    metadata.drop_all(engine)
 metadata.create_all(engine)
 
 class NoteIn(BaseModel):
