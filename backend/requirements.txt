@@ -1,0 +1,8 @@
+uvicorn == 0.15.0
+fastapi == 0.70.0
+sqlalchemy == 1.4.27
+sqlalchemy_utils == 0.37.9
+asyncpg == 0.25.0
+databases == 0.5.3
+psycopg2 == 2.9.2
+alembic == 1.7.5

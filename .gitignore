@@ -1,0 +1,11 @@
+postgres/
+pgadmin/
+
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+
+.vscode/
+
+backend/test.db
