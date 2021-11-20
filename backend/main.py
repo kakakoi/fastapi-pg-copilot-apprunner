@@ -27,45 +27,41 @@ PORT = secret_text['port']
 DB_NAME = secret_text['dbname']
 
 # SQLAlchemy specific code, as with any other app
-# DATABASE_URL = "sqlite:///./test.db"
+TEST_DATABASE_URL = "sqlite:///./test.db"
 DATABASE_URL = '{}://{}:{}@{}:{}/{}'.format(DATABASE, USER, PASSWORD, HOST, PORT, DB_NAME)
 
-database = databases.Database(DATABASE_URL)
+TESTING = False
 
+if TESTING:
+    database = databases.Database(TEST_DATABASE_URL, force_rollback=True)
+else:
+    database = databases.Database(DATABASE_URL)
 
 metadata = sqlalchemy.MetaData()
 
-
-
 notes = sqlalchemy.Table(
-
     "notes",
-
     metadata,
-
     sqlalchemy.Column("id", sqlalchemy.Integer, primary_key=True),
-
+    sqlalchemy.Column("name", sqlalchemy.String),
     sqlalchemy.Column("text", sqlalchemy.String),
-
     sqlalchemy.Column("completed", sqlalchemy.Boolean),
-
 )
-
-
 
 engine = sqlalchemy.create_engine(
     DATABASE_URL
 )
 metadata.create_all(engine)
 
-
 class NoteIn(BaseModel):
+    name: str
     text: str
     completed: bool
 
 
 class Note(BaseModel):
     id: int
+    name: str
     text: str
     completed: bool
 
