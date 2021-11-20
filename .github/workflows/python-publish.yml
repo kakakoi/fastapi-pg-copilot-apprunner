@@ -40,4 +40,4 @@ jobs:
       run: |
         pytest
       env:
-        DB_SECRET: '{}'
+        DB_SECRET: '{"password":"password","dbname": "dev","port": 5432,"username": "dev_api","host": "postgresql"}'
