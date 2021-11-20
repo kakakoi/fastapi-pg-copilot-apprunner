@@ -8,4 +8,6 @@ __pycache__/
 
 .vscode/
 
-backend/test.db
+*.db
+
+.pytest_cache
