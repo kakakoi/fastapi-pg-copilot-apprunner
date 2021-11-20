@@ -6,3 +6,4 @@ asyncpg == 0.25.0
 databases == 0.5.3
 psycopg2 == 2.9.2
 alembic == 1.7.5
+httpx == 0.21.1
