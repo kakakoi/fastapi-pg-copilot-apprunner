@@ -37,7 +37,7 @@ services:
 
   app:
     container_name: "app"
-    build: ./backend
+    build: .
     restart: always
     tty: true
     ports:

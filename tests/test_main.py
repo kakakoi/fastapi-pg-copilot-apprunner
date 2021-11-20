@@ -1,9 +1,10 @@
 import starlette.status
 import pytest
 from httpx import AsyncClient
+
 import os
 os.environ['TESTING'] = 'True'
-from backend.main import app, engine, metadata
+from backend.main import app, DATABASE_URL
 
 
 @pytest.fixture
