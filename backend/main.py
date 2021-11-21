@@ -19,10 +19,6 @@ app = FastAPI()
 message = "go /docs"
 TEST_DATABASE_URL = "sqlite:///./test.db"
 DATABASE_URL = TEST_DATABASE_URL
-print('-------------------')
-print(os.environ)
-print('-------------------')
-
 TESTING = os.environ.get('TESTING')
 SECRET_NAME = 'FPCASVCCLUSTER_SECRET'
 try:
