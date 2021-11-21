@@ -4,7 +4,7 @@ from httpx import AsyncClient
 
 import os
 os.environ['TESTING'] = 'True'
-from backend.main import app, DATABASE_URL
+from backend.main import app
 
 
 @pytest.fixture

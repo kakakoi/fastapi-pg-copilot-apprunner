@@ -2,7 +2,7 @@
 # ローカル開発環境
 ```bash
 $ export PYTHONDONTWRITEBYTECODE=1 #no cache
-$ export FPCASVCCLUSTER_SECURITY_GROUP='{"password":"password","dbname": "dev","port": 5432,"username": "dev_api","host": "localhost"}'
+$ export FPCASVCCLUSTER_SECRET='{"password":"password","dbname": "dev","port": 5432,"username": "dev_api","host": "localhost"}'
 $ poetry install
 $ poetry shell
 $ cd backend
