@@ -42,6 +42,10 @@ except AttributeError as e:
     message = 'Failed to Load: ENV-NONE (ToT)'
 
 database = databases.Database(DATABASE_URL)
+
 engine = sqlalchemy.create_engine(
     DATABASE_URL
 )
+
+async def get_db():
+        yield database
