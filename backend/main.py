@@ -1,24 +1,12 @@
 from typing import List
-from distutils.util import strtobool
-
-import sqlalchemy
 
 from fastapi import FastAPI
 from pydantic import BaseModel
 
 from backend.db import metadata, database, engine, TESTING, message
+from backend.models.note import notes
 
 app = FastAPI()
-
-notes = sqlalchemy.Table(
-    "notes",
-    metadata,
-    sqlalchemy.Column("id", sqlalchemy.Integer, primary_key=True),
-    sqlalchemy.Column("title", sqlalchemy.String, server_default="blank"),
-    sqlalchemy.Column("text", sqlalchemy.String),
-    sqlalchemy.Column("completed", sqlalchemy.Boolean),
-)
-
 
 if TESTING:
     metadata.drop_all(engine)
