@@ -71,3 +71,31 @@ $ copilot pipeline update
 ```bash
 $ copilot app delete
 ```
+
+
+### copilot fargate aurora serverless pg
+```bash
+$ copilot init
+Application name: fpca
+Workload type: Load Balanced Web Service
+Service name: fpca-svc
+Dockerfile: ./Dockerfile
+parse EXPOSE: no EXPOSE statements in Dockerfile ./Dockerfile
+Port: 80
+Ok great, we'll set up a Load Balanced Web Service named fpca-svc in application fpca listening on port 80.'
+- Creating the infrastructure for stack fpca-test-fpca-svc                        [create complete]  [335.0s]
+$ copilot storage init
+Only found one workload, defaulting to: fpca-svc
+Storage type: Aurora Serverless
+Storage resource name: fpca-svc-cluster
+Database engine: PostgreSQL
+Initial database name: dev
+✔ Wrote CloudFormation template for Database Cluster fpca-svc-cluster at copilot/fpca-svc/addons/fpca-svc-cluster.yml
+
+Recommended follow-up actions:
+  - Update fpca-svc's code to leverage the injected environment variable FPCASVCCLUSTER_SECRET.
+For example, in JavaScript you can write `const {username, host, dbname, password, port} = JSON.parse(process.env.FPCASVCCLUSTER_SECRET)`.
+  - Run `copilot deploy --name fpca-svc` to deploy your storage resources.'
+- Updating the infrastructure for stack fpca-test-fpca-svc                        [update complete]  [1194.7s]
+$ copilot deploy --name fpca-svc
+```

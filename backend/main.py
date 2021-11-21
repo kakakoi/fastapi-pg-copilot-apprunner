@@ -24,7 +24,7 @@ print(os.environ)
 print('-------------------')
 
 TESTING = os.environ.get('TESTING')
-SECRET_NAME = 'FPCASVCCLUSTER_SECURITY_GROUP'
+SECRET_NAME = 'FPCASVCCLUSTER_SECRET'
 try:
     TESTING = strtobool(TESTING)
 
