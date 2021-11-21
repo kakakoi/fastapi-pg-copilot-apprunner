@@ -19,8 +19,11 @@ app = FastAPI()
 message = "go /docs"
 TEST_DATABASE_URL = "sqlite:///./test.db"
 DATABASE_URL = TEST_DATABASE_URL
+print('-------------------')
+print(os.environ)
+print('-------------------')
+
 TESTING = os.environ.get('TESTING')
-print(f'------------{TESTING}')
 SECRET_NAME = 'FPCASVCCLUSTER_SECURITY_GROUP'
 try:
     TESTING = strtobool(TESTING)
