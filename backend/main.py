@@ -5,24 +5,13 @@ from pydantic import BaseModel
 
 from backend.db import metadata, database, engine, TESTING, message
 from backend.models.note import notes
+from backend.schemas.note import Note, NoteIn
 
 app = FastAPI()
 
 if TESTING:
     metadata.drop_all(engine)
 metadata.create_all(engine)
-
-class NoteIn(BaseModel):
-    title: str
-    text: str
-    completed: bool
-
-
-class Note(BaseModel):
-    id: int
-    title: str
-    text: str
-    completed: bool
 
 @app.on_event("startup")
 async def startup():
