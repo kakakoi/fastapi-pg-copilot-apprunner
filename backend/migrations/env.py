@@ -9,10 +9,11 @@ from alembic import context
 # access to the values within the .ini file in use.
 config = context.config
 
-from main import DATABASE_URL, metadata
+from backend.db import DATABASE_URL
+import backend.models
 
 config.set_main_option('sqlalchemy.url', str(DATABASE_URL))
-target_metadata = metadata
+target_metadata = backend.models.metadata
 print('--------------------')
 print(target_metadata.tables)
 

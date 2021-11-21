@@ -5,7 +5,6 @@ from httpx import AsyncClient
 import os
 os.environ['TESTING'] = 'True'
 from backend.main import app
-import backend.db
 
 
 @pytest.fixture
